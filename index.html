@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI創科ESG馬拉松 - 競賽報名</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .file-upload-area {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s ease;
+        }
+        .file-upload-area:hover {
+            border-color: #667eea;
+            background-color: #f7fafc;
+        }
+        .file-upload-area.dragover {
+            border-color: #667eea;
+            background-color: #edf2f7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Language Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="langToggle" class="bg-white shadow-lg rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <span id="langText">English</span>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <div class="gradient-bg text-white py-12">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">AI創科ESG馬拉松</h1>
+            <h2 id="subtitle" class="text-xl md:text-2xl font-light opacity-90">競賽報名表</h2>
+        </div>
+    </div>
+
+    <!-- Main Form -->
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <form id="registrationForm" class="space-y-8">
+                <!-- Team Name Section -->
+                <div class="border-b border-gray-200 pb-8">
+                    <h3 id="teamTitle" class="text-2xl font-semibold text-gray-800 mb-6">隊伍資料</h3>
+                    <div class="mb-6">
+                        <label id="teamNameLabel" class="block text-sm font-medium text-gray-700 mb-2">隊伍名稱</label>
+                        <input type="text" id="teamName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                    </div>
+                </div>
+
+                <!-- Participants Section -->
+                <div class="border-b border-gray-200 pb-8">
+                    <h3 id="participantsTitle" class="text-2xl font-semibold text-gray-800 mb-6">參賽者資料</h3>
+                    <div id="participantsList" class="space-y-4">
+                        <div class="participant-entry flex items-center space-x-4">
+                            <div class="flex-1">
+                                <input type="text" placeholder="參賽者姓名" class="participant-name w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                            </div>
+                            <button type="button" class="remove-participant hidden bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm">
+                                <span class="remove-text">移除</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="addParticipant" class="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                        <span id="addParticipantText">+ 新增參賽者</span>
+                    </button>
+                </div>
+
+                <!-- Teacher Information -->
+                <div class="border-b border-gray-200 pb-8">
+                    <h3 id="teacherTitle" class="text-2xl font-semibold text-gray-800 mb-6">指導老師資料</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label id="teacherNameLabel" class="block text-sm font-medium text-gray-700 mb-2">老師姓名</label>
+                            <input type="text" id="teacherName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                        </div>
+                        <div>
+                            <label id="teacherEmailLabel" class="block text-sm font-medium text-gray-700 mb-2">聯絡電郵</label>
+                            <input type="email" id="teacherEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                        </div>
+                        <div>
+                            <label id="teacherPhoneLabel" class="block text-sm font-medium text-gray-700 mb-2">聯絡電話</label>
+                            <input type="tel" id="teacherPhone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                        </div>
+                        <div>
+                            <label id="schoolNameLabel" class="block text-sm font-medium text-gray-700 mb-2">學校名稱</label>
+                            <input type="text" id="schoolName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Selection -->
+                <div class="border-b border-gray-200 pb-8">
+                    <h3 id="trackTitle" class="text-2xl font-semibold text-gray-800 mb-6">參賽組別</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <label class="track-option cursor-pointer">
+                            <input type="radio" name="track" value="E" class="sr-only" required>
+                            <div class="track-card border-2 border-gray-200 rounded-lg p-6 text-center hover:border-blue-500 transition-all">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">E</div>
+                                <div id="trackE" class="text-sm text-gray-600">環境保護</div>
+                                <div id="trackEDesc" class="text-xs text-gray-500 mt-2">Environmental</div>
+                            </div>
+                        </label>
+                        <label class="track-option cursor-pointer">
+                            <input type="radio" name="track" value="S" class="sr-only" required>
+                            <div class="track-card border-2 border-gray-200 rounded-lg p-6 text-center hover:border-blue-500 transition-all">
+                                <div class="text-3xl font-bold text-green-600 mb-2">S</div>
+                                <div id="trackS" class="text-sm text-gray-600">社會責任</div>
+                                <div id="trackSDesc" class="text-xs text-gray-500 mt-2">Social</div>
+                            </div>
+                        </label>
+                        <label class="track-option cursor-pointer">
+                            <input type="radio" name="track" value="G" class="sr-only" required>
+                            <div class="track-card border-2 border-gray-200 rounded-lg p-6 text-center hover:border-blue-500 transition-all">
+                                <div class="text-3xl font-bold text-purple-600 mb-2">G</div>
+                                <div id="trackG" class="text-sm text-gray-600">企業治理</div>
+                                <div id="trackGDesc" class="text-xs text-gray-500 mt-2">Governance</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Material Submission -->
+                <div class="pb-8">
+                    <h3 id="materialTitle" class="text-2xl font-semibold text-gray-800 mb-6">材料提交</h3>
+                    
+                    <!-- Drive Link Section -->
+                    <div id="driveLinkSection">
+                        <div class="space-y-4">
+                            <div>
+                                <label id="driveLinkLabel" class="block text-sm font-medium text-gray-700 mb-2">雲端連結</label>
+                                <input type="url" id="driveLink" placeholder="https://drive.google.com/..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div class="text-sm text-blue-700">
+                                        <div id="linkTipTitle" class="font-medium mb-1">重要提醒</div>
+                                        <div id="linkTipContent">請確保連結設定為「任何人都可以檢視」，以便評審能夠存取您的材料。</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg">
+                        <span id="submitText">提交報名</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            zh: {
+                subtitle: "競賽報名表",
+                teamTitle: "隊伍資料",
+                teamNameLabel: "隊伍名稱",
+                participantsTitle: "參賽者資料",
+                addParticipantText: "+ 新增參賽者",
+                removeText: "移除",
+                teacherTitle: "指導老師資料",
+                teacherNameLabel: "老師姓名",
+                teacherEmailLabel: "聯絡電郵",
+                teacherPhoneLabel: "聯絡電話",
+                schoolNameLabel: "學校名稱",
+                trackTitle: "參賽組別",
+                trackE: "環境保護",
+                trackEDesc: "Environmental",
+                trackS: "社會責任",
+                trackSDesc: "Social",
+                trackG: "企業治理",
+                trackGDesc: "Governance",
+                materialTitle: "材料提交",
+                driveLinkLabel: "雲端連結",
+                linkTipTitle: "重要提醒",
+                linkTipContent: "請確保連結設定為「任何人都可以檢視」，以便評審能夠存取您的材料。",
+                submitText: "提交報名",
+                langText: "English",
+                participantPlaceholder: "參賽者姓名"
+            },
+            en: {
+                subtitle: "Competition Registration Form",
+                teamTitle: "Team Information",
+                teamNameLabel: "Team Name",
+                participantsTitle: "Participants Information",
+                addParticipantText: "+ Add Participant",
+                removeText: "Remove",
+                teacherTitle: "Teacher Information",
+                teacherNameLabel: "Teacher Name",
+                teacherEmailLabel: "Contact Email",
+                teacherPhoneLabel: "Contact Phone",
+                schoolNameLabel: "School Name",
+                trackTitle: "Competition Track",
+                trackE: "Environmental",
+                trackEDesc: "環境保護",
+                trackS: "Social",
+                trackSDesc: "社會責任",
+                trackG: "Governance",
+                trackGDesc: "企業治理",
+                materialTitle: "Material Submission",
+                driveLinkLabel: "Cloud Link",
+                linkTipTitle: "Important Note",
+                linkTipContent: "Please ensure the link is set to 'Anyone can view' so judges can access your materials.",
+                submitText: "Submit Registration",
+                langText: "中文",
+                participantPlaceholder: "Participant Name"
+            }
+        };
+
+        let currentLang = 'zh';
+
+        // Language toggle functionality
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const t = translations[currentLang];
+            
+            // Update all text elements
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+
+            // Update participant placeholders
+            document.querySelectorAll('.participant-name').forEach(input => {
+                input.placeholder = t.participantPlaceholder;
+            });
+
+            // Update remove button text
+            document.querySelectorAll('.remove-text').forEach(span => {
+                span.textContent = t.removeText;
+            });
+        }
+
+        // Participant management
+        let participantCount = 1;
+
+        document.getElementById('addParticipant').addEventListener('click', function() {
+            participantCount++;
+            const participantsList = document.getElementById('participantsList');
+            const newParticipant = document.createElement('div');
+            newParticipant.className = 'participant-entry flex items-center space-x-4';
+            newParticipant.innerHTML = `
+                <div class="flex-1">
+                    <input type="text" placeholder="${translations[currentLang].participantPlaceholder}" class="participant-name w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                </div>
+                <button type="button" class="remove-participant bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm">
+                    <span class="remove-text">${translations[currentLang].removeText}</span>
+                </button>
+            `;
+            participantsList.appendChild(newParticipant);
+            updateRemoveButtons();
+        });
+
+        function updateRemoveButtons() {
+            const removeButtons = document.querySelectorAll('.remove-participant');
+            removeButtons.forEach((button, index) => {
+                if (participantCount > 1) {
+                    button.classList.remove('hidden');
+                } else {
+                    button.classList.add('hidden');
+                }
+                
+                button.onclick = function() {
+                    button.closest('.participant-entry').remove();
+                    participantCount--;
+                    updateRemoveButtons();
+                };
+            });
+        }
+
+        // Track selection
+        document.querySelectorAll('.track-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.track-card').forEach(card => {
+                    card.classList.remove('border-blue-500', 'bg-blue-50');
+                    card.classList.add('border-gray-200');
+                });
+                
+                const card = this.querySelector('.track-card');
+                card.classList.remove('border-gray-200');
+                card.classList.add('border-blue-500', 'bg-blue-50');
+                
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const participants = Array.from(document.querySelectorAll('.participant-name'))
+                .map(input => input.value)
+                .filter(name => name.trim() !== '');
+            
+            const formData = {
+                teamName: document.getElementById('teamName').value,
+                participants: participants,
+                teacherName: document.getElementById('teacherName').value,
+                teacherEmail: document.getElementById('teacherEmail').value,
+                teacherPhone: document.getElementById('teacherPhone').value,
+                schoolName: document.getElementById('schoolName').value,
+                track: document.querySelector('input[name="track"]:checked')?.value,
+                driveLink: document.getElementById('driveLink').value
+            };
+            
+            // Create WhatsApp message
+            const trackNames = {
+                'E': currentLang === 'zh' ? '環境保護 (Environmental)' : 'Environmental (環境保護)',
+                'S': currentLang === 'zh' ? '社會責任 (Social)' : 'Social (社會責任)',
+                'G': currentLang === 'zh' ? '企業治理 (Governance)' : 'Governance (企業治理)'
+            };
+            
+            const message = currentLang === 'zh' ? 
+                `AI創科ESG馬拉松 - 競賽報名
+
+隊伍名稱: ${formData.teamName}
+
+參賽者:
+${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')}
+
+指導老師資料:
+姓名: ${formData.teacherName}
+電郵: ${formData.teacherEmail}
+電話: ${formData.teacherPhone}
+學校: ${formData.schoolName}
+
+參賽組別: ${trackNames[formData.track]}
+
+材料連結: ${formData.driveLink}` :
+                `AI Innovation ESG Marathon - Registration
+
+Team Name: ${formData.teamName}
+
+Participants:
+${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')}
+
+Teacher Information:
+Name: ${formData.teacherName}
+Email: ${formData.teacherEmail}
+Phone: ${formData.teacherPhone}
+School: ${formData.schoolName}
+
+Competition Track: ${trackNames[formData.track]}
+
+Material Link: ${formData.driveLink}`;
+            
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/85254920148?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+
+        // Initialize
+        updateLanguage();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a25e5d63853e83',t:'MTc1NzA0MDA5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
