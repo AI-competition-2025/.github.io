@@ -34,8 +34,13 @@
     <!-- Header -->
     <div class="gradient-bg text-white py-12">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">AI創科ESG馬拉松</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">國際青少年AI創科ESG馬拉松</h1>
             <h2 id="subtitle" class="text-xl md:text-2xl font-light opacity-90">競賽報名表</h2>
+            <div class="mt-6 bg-white/10 backdrop-blur-sm rounded-lg p-6 text-left max-w-3xl mx-auto">
+                <p id="description" class="text-sm md:text-base leading-relaxed">
+                    香港精算扶輪社主辦國際青少年AI創科 ESG馬拉松，基督教家庭服務中心與Metaprint合辦，面向全港小學，鼓勵學生運用AI Agent技術解決ESG挑戰。包括AI講座、培訓資源及導師支援。優勝隊伍可獲 MicroFund資助及國內外STEAM交流機會。<a href="https://www.socdcompetition.com/webinar-registration" class="text-yellow-300 hover:text-yellow-200 underline" target="_blank">了解更多詳情可以瀏覽</a>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -124,27 +129,72 @@
                     </div>
                 </div>
 
-                <!-- Material Submission -->
+                <!-- Payment Information -->
                 <div class="pb-8">
-                    <h3 id="materialTitle" class="text-2xl font-semibold text-gray-800 mb-6">材料提交</h3>
+                    <h3 id="paymentTitle" class="text-2xl font-semibold text-gray-800 mb-6">報名費用</h3>
                     
-                    <!-- Drive Link Section -->
-                    <div id="driveLinkSection">
-                        <div class="space-y-4">
-                            <div>
-                                <label id="driveLinkLabel" class="block text-sm font-medium text-gray-700 mb-2">雲端連結</label>
-                                <input type="url" id="driveLink" placeholder="https://drive.google.com/..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            </div>
-                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                <div class="flex items-start">
-                                    <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <div class="text-sm text-blue-700">
-                                        <div id="linkTipTitle" class="font-medium mb-1">重要提醒</div>
-                                        <div id="linkTipContent">請確保連結設定為「任何人都可以檢視」，以便評審能夠存取您的材料。</div>
+                    <!-- Fee Information -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                        <div id="feeInfo" class="space-y-3 text-gray-700">
+                            <div class="font-semibold text-lg text-blue-800">報名費用詳情：</div>
+                            <div>• 標準報名費用：HK$1500/隊伍</div>
+                            <div>• 早鳥優惠（8-10月）及扶輪社推薦學校優惠：HK$1200/隊伍</div>
+                            <div class="text-sm text-gray-600 mt-2">報名費用包括（參賽資格、基礎培訓、證書）</div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-4" id="paymentMethodLabel">付款方式</label>
+                        <div class="space-y-3">
+                            <label class="payment-method cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="payme" class="sr-only" required>
+                                <div class="method-card border-2 border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-all">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 method-radio"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-700" id="paymeTitle">PayMe QR Code</div>
+                                            <div class="text-sm text-gray-500" id="paymeDesc">使用PayMe掃描QR碼付款</div>
+                                        </div>
                                     </div>
                                 </div>
+                            </label>
+                            <label class="payment-method cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="cheque" class="sr-only">
+                                <div class="method-card border-2 border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-all">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 method-radio"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-700" id="chequeTitle">支票</div>
+                                            <div class="text-sm text-gray-500" id="chequeDesc">郵寄支票付款</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-method cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="transfer" class="sr-only">
+                                <div class="method-card border-2 border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-all">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 method-radio"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-700" id="transferTitle">銀行轉帳</div>
+                                            <div class="text-sm text-gray-500" id="transferDesc">直接銀行轉帳付款</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Payment Proof Note -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <svg class="h-5 w-5 text-yellow-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div class="text-sm text-yellow-700">
+                                <div id="proofTitle" class="font-medium mb-1">重要提醒</div>
+                                <div id="proofContent">付款後請拍攝付款證明照片，並在提交表格時一併發送給我們確認。</div>
                             </div>
                         </div>
                     </div>
@@ -155,6 +205,13 @@
                     <button type="submit" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg">
                         <span id="submitText">提交報名</span>
                     </button>
+                    
+                    <!-- Form Notice -->
+                    <div class="mt-6 text-sm text-gray-600 max-w-2xl mx-auto">
+                        <p id="formNotice" class="leading-relaxed">
+                            此表格將生成WhatsApp訊息進行報名申請，委員會將透過您註冊時使用的WhatsApp與您聯繫。如果您無法使用WhatsApp，<a href="https://docs.google.com/forms/d/e/1FAIpQLSdzyw6nm0IvxCG0LzHQp75SXcDzjV42scSk22605M9i7VGrHA/viewform" class="text-blue-600 hover:text-blue-800 underline" target="_blank">請使用此連結</a>
+                        </p>
+                    </div>
                 </div>
             </form>
         </div>
@@ -165,6 +222,7 @@
         const translations = {
             zh: {
                 subtitle: "競賽報名表",
+                description: "香港精算扶輪社主辦國際青少年AI創科 ESG馬拉松，基督教家庭服務中心與Metaprint合辦，面向全港小學，鼓勵學生運用AI Agent技術解決ESG挑戰。包括AI講座、培訓資源及導師支援。優勝隊伍可獲 MicroFund資助及國內外STEAM交流機會。了解更多詳情可以瀏覽 https://www.socdcompetition.com/webinar-registration",
                 teamTitle: "隊伍資料",
                 teamNameLabel: "隊伍名稱",
                 participantsTitle: "參賽者資料",
@@ -182,16 +240,24 @@
                 trackSDesc: "Social",
                 trackG: "企業治理",
                 trackGDesc: "Governance",
-                materialTitle: "材料提交",
-                driveLinkLabel: "雲端連結",
-                linkTipTitle: "重要提醒",
-                linkTipContent: "請確保連結設定為「任何人都可以檢視」，以便評審能夠存取您的材料。",
+                paymentTitle: "報名費用",
+                paymentMethodLabel: "付款方式",
+                paymeTitle: "PayMe QR Code",
+                paymeDesc: "使用PayMe掃描QR碼付款",
+                chequeTitle: "支票",
+                chequeDesc: "郵寄支票付款",
+                transferTitle: "銀行轉帳",
+                transferDesc: "直接銀行轉帳付款",
+                proofTitle: "重要提醒",
+                proofContent: "付款後請拍攝付款證明照片，並在提交表格時一併發送給我們確認。",
                 submitText: "提交報名",
+                formNotice: "此表格將生成WhatsApp訊息進行報名申請，委員會將透過您註冊時使用的WhatsApp與您聯繫。如果您無法使用WhatsApp，請使用此連結：",
                 langText: "English",
                 participantPlaceholder: "參賽者姓名"
             },
             en: {
                 subtitle: "Competition Registration Form",
+                description: "The International Youth AI Innovation ESG Marathon is organized by the Hong Kong Actuarial Rotary Club, co-organized by Christian Family Service Centre and Metaprint, targeting primary schools across Hong Kong. It encourages students to use AI Agent technology to solve ESG challenges. Includes AI lectures, training resources and mentor support. Winning teams can receive MicroFund funding and domestic and international STEAM exchange opportunities.",
                 teamTitle: "Team Information",
                 teamNameLabel: "Team Name",
                 participantsTitle: "Participants Information",
@@ -209,11 +275,18 @@
                 trackSDesc: "社會責任",
                 trackG: "Governance",
                 trackGDesc: "企業治理",
-                materialTitle: "Material Submission",
-                driveLinkLabel: "Cloud Link",
-                linkTipTitle: "Important Note",
-                linkTipContent: "Please ensure the link is set to 'Anyone can view' so judges can access your materials.",
+                paymentTitle: "Registration Fee",
+                paymentMethodLabel: "Payment Method",
+                paymeTitle: "PayMe QR Code",
+                paymeDesc: "Pay using PayMe QR code scan",
+                chequeTitle: "Cheque",
+                chequeDesc: "Mail cheque payment",
+                transferTitle: "Bank Transfer",
+                transferDesc: "Direct bank transfer payment",
+                proofTitle: "Important Note",
+                proofContent: "Please take a photo of payment proof after payment and send it to us when submitting the form for confirmation.",
                 submitText: "Submit Registration",
+                formNotice: "This form will generate a WhatsApp message for registration application. The committee will communicate with you through the WhatsApp used during registration. If you cannot use WhatsApp,",
                 langText: "中文",
                 participantPlaceholder: "Participant Name"
             }
@@ -302,6 +375,29 @@
             });
         });
 
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.method-card').forEach(card => {
+                    card.classList.remove('border-blue-500', 'bg-blue-50');
+                    card.classList.add('border-gray-200');
+                    const radio = card.querySelector('.method-radio');
+                    radio.classList.remove('border-blue-500', 'bg-blue-500');
+                    radio.classList.add('border-gray-300');
+                });
+                
+                const card = this.querySelector('.method-card');
+                card.classList.remove('border-gray-200');
+                card.classList.add('border-blue-500', 'bg-blue-50');
+                
+                const radio = card.querySelector('.method-radio');
+                radio.classList.remove('border-gray-300');
+                radio.classList.add('border-blue-500', 'bg-blue-500');
+                
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
 
 
         // Form submission
@@ -321,7 +417,7 @@
                 teacherPhone: document.getElementById('teacherPhone').value,
                 schoolName: document.getElementById('schoolName').value,
                 track: document.querySelector('input[name="track"]:checked')?.value,
-                driveLink: document.getElementById('driveLink').value
+                paymentMethod: document.querySelector('input[name="paymentMethod"]:checked')?.value
             };
             
             // Create WhatsApp message
@@ -330,9 +426,15 @@
                 'S': currentLang === 'zh' ? '社會責任 (Social)' : 'Social (社會責任)',
                 'G': currentLang === 'zh' ? '企業治理 (Governance)' : 'Governance (企業治理)'
             };
+
+            const paymentNames = {
+                'payme': currentLang === 'zh' ? 'PayMe QR Code' : 'PayMe QR Code',
+                'cheque': currentLang === 'zh' ? '支票' : 'Cheque',
+                'transfer': currentLang === 'zh' ? '銀行轉帳' : 'Bank Transfer'
+            };
             
             const message = currentLang === 'zh' ? 
-                `AI創科ESG馬拉松 - 競賽報名
+                `國際青少年AI創科ESG馬拉松 - 競賽報名
 
 隊伍名稱: ${formData.teamName}
 
@@ -347,8 +449,10 @@ ${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')
 
 參賽組別: ${trackNames[formData.track]}
 
-材料連結: ${formData.driveLink}` :
-                `AI Innovation ESG Marathon - Registration
+付款方式: ${paymentNames[formData.paymentMethod]}
+
+備註: 付款證明將隨後提供` :
+                `International Youth AI Innovation ESG Marathon - Registration
 
 Team Name: ${formData.teamName}
 
@@ -363,7 +467,9 @@ School: ${formData.schoolName}
 
 Competition Track: ${trackNames[formData.track]}
 
-Material Link: ${formData.driveLink}`;
+Payment Method: ${paymentNames[formData.paymentMethod]}
+
+Note: Payment proof will be provided separately`;
             
             // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
@@ -376,5 +482,5 @@ Material Link: ${formData.driveLink}`;
         // Initialize
         updateLanguage();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a25e5d63853e83',t:'MTc1NzA0MDA5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97cd6dac93008b36',t:'MTc1NzQ5MTYxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
