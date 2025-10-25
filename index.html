@@ -186,6 +186,24 @@
                         </div>
                     </div>
 
+                    <!-- 1+1 Program Section -->
+                    <div class="mb-6">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="onePlusOne" class="sr-only">
+                            <div class="flex items-center">
+                                <div class="w-5 h-5 border-2 border-gray-300 rounded mr-3 flex items-center justify-center checkbox-custom">
+                                    <svg class="w-3 h-3 text-white hidden checkmark" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-700" id="onePlusOneTitle">參加1+1計劃</div>
+                                    <div class="text-sm text-gray-600 mt-1 max-w-2xl" id="onePlusOneDesc">每個成功付費的正規隊伍所屬學校，可為弱勢學生免費註冊一支隊伍參賽。如勾選此項目，將需要提供相關證明文件。</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
                     <!-- Payment Proof Note -->
                     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                         <div class="flex items-start">
@@ -248,6 +266,8 @@
                 chequeDesc: "郵寄支票付款",
                 transferTitle: "銀行轉帳",
                 transferDesc: "直接銀行轉帳付款",
+                onePlusOneTitle: "參加1+1計劃",
+                onePlusOneDesc: "每個成功付費的正規隊伍所屬學校，可為弱勢學生免費註冊一支隊伍參賽。如勾選此項目，將需要提供相關證明文件。",
                 proofTitle: "重要提醒",
                 proofContent: "付款後請拍攝付款證明照片，並在提交表格時一併發送給我們確認。",
                 submitText: "提交報名",
@@ -283,6 +303,8 @@
                 chequeDesc: "Mail cheque payment",
                 transferTitle: "Bank Transfer",
                 transferDesc: "Direct bank transfer payment",
+                onePlusOneTitle: "Join 1+1 Program",
+                onePlusOneDesc: "Each school with a successfully paid regular team can register one team for free for underprivileged students. If this option is selected, relevant proof documents will be required.",
                 proofTitle: "Important Note",
                 proofContent: "Please take a photo of payment proof after payment and send it to us when submitting the form for confirmation.",
                 submitText: "Submit Registration",
@@ -398,6 +420,26 @@
             });
         });
 
+        // 1+1 Program checkbox functionality
+        document.querySelector('label[for="onePlusOne"], label:has(#onePlusOne)').addEventListener('click', function(e) {
+            e.preventDefault();
+            const checkbox = document.getElementById('onePlusOne');
+            const checkboxCustom = document.querySelector('.checkbox-custom');
+            const checkmark = document.querySelector('.checkmark');
+            
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                checkboxCustom.classList.remove('border-gray-300');
+                checkboxCustom.classList.add('border-green-500', 'bg-green-500');
+                checkmark.classList.remove('hidden');
+            } else {
+                checkboxCustom.classList.remove('border-green-500', 'bg-green-500');
+                checkboxCustom.classList.add('border-gray-300');
+                checkmark.classList.add('hidden');
+            }
+        });
+
 
 
         // Form submission
@@ -417,7 +459,8 @@
                 teacherPhone: document.getElementById('teacherPhone').value,
                 schoolName: document.getElementById('schoolName').value,
                 track: document.querySelector('input[name="track"]:checked')?.value,
-                paymentMethod: document.querySelector('input[name="paymentMethod"]:checked')?.value
+                paymentMethod: document.querySelector('input[name="paymentMethod"]:checked')?.value,
+                onePlusOne: document.getElementById('onePlusOne').checked
             };
             
             // Create WhatsApp message
@@ -451,6 +494,8 @@ ${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')
 
 付款方式: ${paymentNames[formData.paymentMethod]}
 
+1+1計劃: ${formData.onePlusOne ? '是 (將提供相關證明文件)' : '否'}
+
 備註: 付款證明將隨後提供` :
                 `International Youth AI Innovation ESG Marathon - Registration
 
@@ -469,6 +514,8 @@ Competition Track: ${trackNames[formData.track]}
 
 Payment Method: ${paymentNames[formData.paymentMethod]}
 
+1+1 Program: ${formData.onePlusOne ? 'Yes (Relevant proof documents will be provided)' : 'No'}
+
 Note: Payment proof will be provided separately`;
             
             // Encode message for WhatsApp URL
@@ -482,5 +529,5 @@ Note: Payment proof will be provided separately`;
         // Initialize
         updateLanguage();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97cd6dac93008b36',t:'MTc1NzQ5MTYxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993df202c66d854a',t:'MTc2MTM1NTc5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
