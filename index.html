@@ -55,6 +55,34 @@
                         <label id="teamNameLabel" class="block text-sm font-medium text-gray-700 mb-2">隊伍名稱</label>
                         <input type="text" id="teamName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                     </div>
+                    
+                    <!-- School Type Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-4" id="schoolTypeLabel">學校類型</label>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <label class="school-type-option cursor-pointer">
+                                <input type="radio" name="schoolType" value="primary" class="sr-only" required>
+                                <div class="school-type-card border-2 border-gray-200 rounded-lg p-4 text-center hover:border-blue-500 transition-all">
+                                    <div class="text-lg font-semibold text-gray-700" id="primarySchool">小學</div>
+                                    <div class="text-xs text-gray-500 mt-1" id="primarySchoolEn">Primary School</div>
+                                </div>
+                            </label>
+                            <label class="school-type-option cursor-pointer">
+                                <input type="radio" name="schoolType" value="secondary" class="sr-only">
+                                <div class="school-type-card border-2 border-gray-200 rounded-lg p-4 text-center hover:border-blue-500 transition-all">
+                                    <div class="text-lg font-semibold text-gray-700" id="secondarySchool">中學</div>
+                                    <div class="text-xs text-gray-500 mt-1" id="secondarySchoolEn">Secondary School</div>
+                                </div>
+                            </label>
+                            <label class="school-type-option cursor-pointer">
+                                <input type="radio" name="schoolType" value="special" class="sr-only">
+                                <div class="school-type-card border-2 border-gray-200 rounded-lg p-4 text-center hover:border-blue-500 transition-all">
+                                    <div class="text-lg font-semibold text-gray-700" id="specialSchool">特殊學校</div>
+                                    <div class="text-xs text-gray-500 mt-1" id="specialSchoolEn">Special School</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Participants Section -->
@@ -157,6 +185,19 @@
                                             <div class="text-sm text-gray-500" id="paymeDesc">使用PayMe掃描QR碼付款</div>
                                         </div>
                                     </div>
+                                    <div class="payment-details hidden mt-4 pt-4 border-t border-gray-200" id="paymeDetails">
+                                        <div class="flex justify-center">
+                                            <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                                                <img id="paymeQR" src="" alt="PayMe QR Code" class="max-w-48 max-h-48 mx-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                                <div class="text-gray-500">
+                                                    <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    <div class="text-sm">PayMe QR Code</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </label>
                             <label class="payment-method cursor-pointer">
@@ -169,6 +210,21 @@
                                             <div class="text-sm text-gray-500" id="chequeDesc">郵寄支票付款</div>
                                         </div>
                                     </div>
+                                    <div class="payment-details hidden mt-4 pt-4 border-t border-gray-200" id="chequeDetails">
+                                        <div class="bg-gray-50 rounded-lg p-4 space-y-4">
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-2" id="chequePayableLabel">支票抬頭：</div>
+                                                <div class="text-gray-600 font-mono bg-white p-2 rounded border">Rotary Club of Abacus Hong Kong Limited</div>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-2" id="chequeMailLabel">郵寄地址：</div>
+                                                <div class="text-gray-600 bg-white p-3 rounded border">
+                                                    <div id="chequeAddressChinese" class="mb-2">九龍灣臨興街21號<br>美羅中心二期603至605室<br>國際青少年AI創科ESG馬拉松<br>賽事委員會 收</div>
+                                                    <div id="chequeAddressEnglish" class="text-sm text-gray-500 border-t pt-2">Rooms 603-605 Metro Centre Phase II, 21 Lam Hing Street, Kowloon Bay.<br>The International Youth AI Innovation ESG Marathon Committee</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </label>
                             <label class="payment-method cursor-pointer">
@@ -179,6 +235,26 @@
                                         <div>
                                             <div class="font-medium text-gray-700" id="transferTitle">銀行轉帳</div>
                                             <div class="text-sm text-gray-500" id="transferDesc">直接銀行轉帳付款</div>
+                                        </div>
+                                    </div>
+                                    <div class="payment-details hidden mt-4 pt-4 border-t border-gray-200" id="transferDetails">
+                                        <div class="bg-gray-50 rounded-lg p-4 space-y-3">
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-1" id="bankLabel">銀行：</div>
+                                                <div class="text-gray-600">滙豐銀行 HSBC (004)</div>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-1" id="accountNameLabel">戶口名稱：</div>
+                                                <div class="text-gray-600 font-mono bg-white p-2 rounded border">ROTARY CLUB OF ABACUS HONG KONG LIMITED</div>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-1" id="accountNumberLabel">戶口號碼：</div>
+                                                <div class="text-gray-600 font-mono bg-white p-2 rounded border">747-213973-838</div>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-gray-700 mb-1" id="fpsLabel">轉數快號碼 / FPS No.：</div>
+                                                <div class="text-gray-600 font-mono bg-white p-2 rounded border">100828037</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -243,6 +319,13 @@
                 description: "香港精算扶輪社主辦國際青少年AI創科 ESG馬拉松，基督教家庭服務中心與Metaprint合辦，面向全港小學，鼓勵學生運用AI Agent技術解決ESG挑戰。包括AI講座、培訓資源及導師支援。優勝隊伍可獲 MicroFund資助及國內外STEAM交流機會。了解更多詳情可以瀏覽 https://www.socdcompetition.com/webinar-registration",
                 teamTitle: "隊伍資料",
                 teamNameLabel: "隊伍名稱",
+                schoolTypeLabel: "學校類型",
+                primarySchool: "小學",
+                primarySchoolEn: "Primary School",
+                secondarySchool: "中學",
+                secondarySchoolEn: "Secondary School",
+                specialSchool: "特殊學校",
+                specialSchoolEn: "Special School",
                 participantsTitle: "參賽者資料",
                 addParticipantText: "+ 新增參賽者",
                 removeText: "移除",
@@ -264,8 +347,14 @@
                 paymeDesc: "使用PayMe掃描QR碼付款",
                 chequeTitle: "支票",
                 chequeDesc: "郵寄支票付款",
+                chequePayableLabel: "支票抬頭：",
+                chequeMailLabel: "郵寄地址：",
                 transferTitle: "銀行轉帳",
                 transferDesc: "直接銀行轉帳付款",
+                bankLabel: "銀行：",
+                accountNameLabel: "戶口名稱：",
+                accountNumberLabel: "戶口號碼：",
+                fpsLabel: "轉數快號碼 / FPS No.：",
                 onePlusOneTitle: "參加1+1計劃",
                 onePlusOneDesc: "每個成功付費的正規隊伍所屬學校，可為弱勢學生免費註冊一支隊伍參賽。如勾選此項目，將需要提供相關證明文件。",
                 proofTitle: "重要提醒",
@@ -280,6 +369,13 @@
                 description: "The International Youth AI Innovation ESG Marathon is organized by the Hong Kong Actuarial Rotary Club, co-organized by Christian Family Service Centre and Metaprint, targeting primary schools across Hong Kong. It encourages students to use AI Agent technology to solve ESG challenges. Includes AI lectures, training resources and mentor support. Winning teams can receive MicroFund funding and domestic and international STEAM exchange opportunities.",
                 teamTitle: "Team Information",
                 teamNameLabel: "Team Name",
+                schoolTypeLabel: "School Type",
+                primarySchool: "Primary School",
+                primarySchoolEn: "小學",
+                secondarySchool: "Secondary School",
+                secondarySchoolEn: "中學",
+                specialSchool: "Special School",
+                specialSchoolEn: "特殊學校",
                 participantsTitle: "Participants Information",
                 addParticipantText: "+ Add Participant",
                 removeText: "Remove",
@@ -301,8 +397,14 @@
                 paymeDesc: "Pay using PayMe QR code scan",
                 chequeTitle: "Cheque",
                 chequeDesc: "Mail cheque payment",
+                chequePayableLabel: "Cheque Payable to:",
+                chequeMailLabel: "Mailing Address:",
                 transferTitle: "Bank Transfer",
                 transferDesc: "Direct bank transfer payment",
+                bankLabel: "Bank:",
+                accountNameLabel: "Account Name:",
+                accountNumberLabel: "Account Number:",
+                fpsLabel: "FPS No. / 轉數快號碼:",
                 onePlusOneTitle: "Join 1+1 Program",
                 onePlusOneDesc: "Each school with a successfully paid regular team can register one team for free for underprivileged students. If this option is selected, relevant proof documents will be required.",
                 proofTitle: "Important Note",
@@ -381,6 +483,22 @@
             });
         }
 
+        // School type selection
+        document.querySelectorAll('.school-type-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.school-type-card').forEach(card => {
+                    card.classList.remove('border-blue-500', 'bg-blue-50');
+                    card.classList.add('border-gray-200');
+                });
+                
+                const card = this.querySelector('.school-type-card');
+                card.classList.remove('border-gray-200');
+                card.classList.add('border-blue-500', 'bg-blue-50');
+                
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
         // Track selection
         document.querySelectorAll('.track-option').forEach(option => {
             option.addEventListener('click', function() {
@@ -400,6 +518,11 @@
         // Payment method selection
         document.querySelectorAll('.payment-method').forEach(method => {
             method.addEventListener('click', function() {
+                // Hide all payment details
+                document.querySelectorAll('.payment-details').forEach(detail => {
+                    detail.classList.add('hidden');
+                });
+                
                 document.querySelectorAll('.method-card').forEach(card => {
                     card.classList.remove('border-blue-500', 'bg-blue-50');
                     card.classList.add('border-gray-200');
@@ -417,6 +540,21 @@
                 radio.classList.add('border-blue-500', 'bg-blue-500');
                 
                 this.querySelector('input[type="radio"]').checked = true;
+                
+                // Show corresponding payment details
+                const paymentDetails = this.querySelector('.payment-details');
+                if (paymentDetails) {
+                    paymentDetails.classList.remove('hidden');
+                }
+                
+                // Set PayMe QR code source if PayMe is selected
+                const paymentValue = this.querySelector('input[type="radio"]').value;
+                if (paymentValue === 'payme') {
+                    const paymeQR = document.getElementById('paymeQR');
+                    paymeQR.src = 'https://raw.githubusercontent.com/AI-competition-2025/.github.io/refs/heads/main/qrcode.png';
+                    paymeQR.style.display = 'block';
+                    paymeQR.classList.remove('hidden');
+                }
             });
         });
 
@@ -453,6 +591,7 @@
             
             const formData = {
                 teamName: document.getElementById('teamName').value,
+                schoolType: document.querySelector('input[name="schoolType"]:checked')?.value,
                 participants: participants,
                 teacherName: document.getElementById('teacherName').value,
                 teacherEmail: document.getElementById('teacherEmail').value,
@@ -475,11 +614,18 @@
                 'cheque': currentLang === 'zh' ? '支票' : 'Cheque',
                 'transfer': currentLang === 'zh' ? '銀行轉帳' : 'Bank Transfer'
             };
+
+            const schoolTypeNames = {
+                'primary': currentLang === 'zh' ? '小學 (Primary School)' : 'Primary School (小學)',
+                'secondary': currentLang === 'zh' ? '中學 (Secondary School)' : 'Secondary School (中學)',
+                'special': currentLang === 'zh' ? '特殊學校 (Special School)' : 'Special School (特殊學校)'
+            };
             
             const message = currentLang === 'zh' ? 
                 `國際青少年AI創科ESG馬拉松 - 競賽報名
 
 隊伍名稱: ${formData.teamName}
+學校類型: ${schoolTypeNames[formData.schoolType]}
 
 參賽者:
 ${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')}
@@ -500,6 +646,7 @@ ${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')
                 `International Youth AI Innovation ESG Marathon - Registration
 
 Team Name: ${formData.teamName}
+School Type: ${schoolTypeNames[formData.schoolType]}
 
 Participants:
 ${formData.participants.map((name, index) => `${index + 1}. ${name}`).join('\n')}
@@ -529,5 +676,5 @@ Note: Payment proof will be provided separately`;
         // Initialize
         updateLanguage();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993df202c66d854a',t:'MTc2MTM1NTc5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'994faf10b02384a6',t:'MTc2MTU0MTc5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
